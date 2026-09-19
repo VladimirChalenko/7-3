@@ -1,11 +1,11 @@
 #создаем облачную сеть
 resource "yandex_vpc_network" "develop" {
-  name = "develop-fops-${var.flow}"
+  name = "develop-network"
 }
 
 #создаем подсеть zone A
 resource "yandex_vpc_subnet" "develop_a" {
-  name           = "develop-fops-${var.flow}-ru-central1-a"
+  name           = "develop-subnet-a"
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.develop.id
   v4_cidr_blocks = ["10.0.1.0/24"]
@@ -14,7 +14,7 @@ resource "yandex_vpc_subnet" "develop_a" {
 
 #создаем подсеть zone B
 resource "yandex_vpc_subnet" "develop_b" {
-  name           = "develop-fops-${var.flow}-ru-central1-b"
+  name           = "develop-subnet-b"
   zone           = "ru-central1-b"
   network_id     = yandex_vpc_network.develop.id
   v4_cidr_blocks = ["10.0.2.0/24"]
@@ -23,13 +23,13 @@ resource "yandex_vpc_subnet" "develop_b" {
 
 #создаем NAT для выхода в интернет
 resource "yandex_vpc_gateway" "nat_gateway" {
-  name = "fops-gateway-${var.flow}"
+  name = "egress-gateway"
   shared_egress_gateway {}
 }
 
 #создаем сетевой маршрут для выхода в интернет через NAT
 resource "yandex_vpc_route_table" "rt" {
-  name       = "fops-route-table-${var.flow}"
+  name       = "develop-route-table"
   network_id = yandex_vpc_network.develop.id
 
   static_route {

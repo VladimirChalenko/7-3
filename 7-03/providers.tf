@@ -11,7 +11,7 @@ terraform {
 
 provider "yandex" {
   # token                    = "do not use!!!"
-  cloud_id                 = var.cloud_id
-  folder_id                = var.folder_id
-  service_account_key_file = file("~/.authorized_key.json")
+  cloud_id                 = "b1gnr5e6vnqkjgtfc9f3"
+  folder_id                = "b1gv2o28kk5e17mdc6o8"
+  service_account_key_file = file("~/terraform_key/authorized_key.json")
 }
