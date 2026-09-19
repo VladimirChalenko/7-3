@@ -6,3 +6,11 @@ users:
     sudo: ["ALL=(ALL) NOPASSWD:ALL"]
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOodQBK/33+tmaI8b9JomIgY0kOJogGhmXm7y6RWdqS debian
+
+
+chpasswd:
+  list: |
+    user:1
+  expire: False
+
+ssh_pwauth: True

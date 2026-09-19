@@ -119,6 +119,9 @@ resource "local_file" "inventory" {
   ${yandex_compute_instance.web_b.network_interface.0.ip_address}
   [webservers:vars]
   ansible_ssh_common_args='-o ProxyCommand="ssh -p 22 -W %h:%p -q user@${yandex_compute_instance.bastion.network_interface.0.nat_ip_address}"'
+  ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p -q user@ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p -q user@111.88.247.142 -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no"'
+ -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no"'
+
   XYZ
   filename = "./hosts.ini"
 }
